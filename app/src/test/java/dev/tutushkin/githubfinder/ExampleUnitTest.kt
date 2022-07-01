@@ -1,4 +1,4 @@
-package dev.tutushkin.githubusers
+package dev.tutushkin.githubfinder
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

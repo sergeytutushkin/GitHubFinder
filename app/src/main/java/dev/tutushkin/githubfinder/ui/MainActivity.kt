@@ -1,7 +1,8 @@
-package dev.tutushkin.githubusers
+package dev.tutushkin.githubfinder.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dev.tutushkin.githubfinder.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

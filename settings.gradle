@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "GitHubUsers"
+rootProject.name = "GitHubFinder"
 include ':app'
