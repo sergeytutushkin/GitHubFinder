@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAvatar"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAvatar"
+        tools:text="@tools:sample/last_names" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName"
+        tools:text="@tools:sample/full_names" />
+
+    <ImageView
+        android:id="@+id/imageViewStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
+        app:srcCompat="@drawable/ic_round_star_24" />
+
+    <TextView
+        android:id="@+id/textViewStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewStar"
+        app:layout_constraintStart_toEndOf="@+id/imageViewStar"
+        app:layout_constraintTop_toTopOf="@+id/imageViewStar"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/textViewLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewStar"
+        app:layout_constraintStart_toEndOf="@+id/textViewStars"
+        app:layout_constraintTop_toTopOf="@+id/imageViewStar"
+        tools:text="@tools:sample/first_names" />
+
+    <TextView
+        android:id="@+id/textViewUpdated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewStar"
+        app:layout_constraintStart_toEndOf="@+id/textViewLanguage"
+        app:layout_constraintTop_toTopOf="@+id/imageViewStar"
+        tools:text="@tools:sample/date/ddmmyy" />
+</androidx.constraintlayout.widget.ConstraintLayout>

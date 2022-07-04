@@ -28,12 +28,23 @@
         app:layout_constraintEnd_toEndOf="@id/searchInput"
         app:layout_constraintTop_toTopOf="@id/searchInput" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reposList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchInput" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/reposPlaceholder"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Search fragment"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
