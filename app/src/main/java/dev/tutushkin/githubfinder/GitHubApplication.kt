@@ -1,4 +1,4 @@
-package dev.tutushkin.githubfinder.ui
+package dev.tutushkin.githubfinder
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

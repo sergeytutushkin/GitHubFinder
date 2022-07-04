@@ -15,6 +15,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModel by viewModels<SearchViewModel>()
+
+
+        println("aaa${viewModel.repos}")
     }
 
 }
