@@ -7,5 +7,5 @@ data class SearchReposResponse(
     val count: Int,
 
     @SerializedName("items")
-    val name: List<SearchReposDto>
+    val items: List<SearchReposDto>
 )

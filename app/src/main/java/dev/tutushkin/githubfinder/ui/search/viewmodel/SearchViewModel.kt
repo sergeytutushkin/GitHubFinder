@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.tutushkin.githubfinder.data.GitHubRepository
-import dev.tutushkin.githubfinder.data.remote.SearchReposDto
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,12 +14,23 @@ class SearchViewModel @Inject constructor(
     private val repository: GitHubRepository
 ) : ViewModel() {
 
-    private val _repos = MutableLiveData<List<SearchReposDto>>()
-    val repos: LiveData<List<SearchReposDto>> = _repos
+    private val _repos = MutableLiveData<ReposState>()
+    val repos: LiveData<ReposState> = _repos
 
     init {
+        _repos.postValue(ReposState.EmptyQuery)
+    }
+
+    fun onNewQuery(query: String) {
+        if (query.isEmpty()) {
+            _repos.postValue(ReposState.EmptyQuery)
+            return
+        }
+
         viewModelScope.launch {
-            _repos.postValue(repository.searchRepositories("allmovies").name)
+            _repos.postValue(ReposState.Loading)
+            val result = ReposState.SuccessResult(repository.searchRepositories(query).items)
+            _repos.postValue(result)
         }
     }
 }
