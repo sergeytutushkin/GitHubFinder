@@ -14,6 +14,7 @@
         android:hint="@string/hint_search_input"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
