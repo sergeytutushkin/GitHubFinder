@@ -29,8 +29,8 @@ class SearchViewModel @Inject constructor(
 
         viewModelScope.launch {
             _repos.postValue(ReposState.Loading)
-            val result = ReposState.SuccessResult(repository.searchRepositories(query).items)
-            _repos.postValue(result)
+            val result = repository.searchRepositories(query).items
+            _repos.postValue(ReposState.SuccessResult(result))
         }
     }
 }

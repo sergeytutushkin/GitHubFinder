@@ -6,6 +6,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.tutushkin.githubfinder.R
@@ -36,8 +37,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         binding.reposList.layoutManager = LinearLayoutManager(requireContext())
         val listener = object : RepoClickListener {
+            // TODO Handle through the ViewModel
             override fun onItemClick(user: String) {
-                TODO("Not yet implemented")
+                val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(user)
+                view.findNavController().navigate(action)
             }
         }
         adapter = SearchAdapter(listener)
@@ -46,6 +49,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.repos.observe(viewLifecycleOwner, ::handleReposList)
     }
 
+    // TODO Handling errors
     private fun handleReposList(state: ReposState) {
         when (state) {
             is ReposState.Loading -> showPlaceholder("Loading...")

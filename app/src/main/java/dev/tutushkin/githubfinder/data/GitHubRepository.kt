@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 interface GitHubRepository {
     suspend fun searchRepositories(name: String): SearchReposResponse
-    suspend fun getUser(user: String): UserResponse
+    suspend fun getUser(name: String): UserResponse
 }
 
 class GitHubRepositoryImpl @Inject constructor(
@@ -15,5 +15,5 @@ class GitHubRepositoryImpl @Inject constructor(
 ) : GitHubRepository {
     override suspend fun searchRepositories(name: String) = gitHubApi.searchRepositories(name)
 
-    override suspend fun getUser(user: String) = gitHubApi.getUser(user)
+    override suspend fun getUser(name: String) = gitHubApi.getUser(name)
 }

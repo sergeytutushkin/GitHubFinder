@@ -18,7 +18,11 @@
         android:id="@+id/userFragment"
         android:name="dev.tutushkin.githubfinder.ui.user.view.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user">
+        <argument
+            android:name="user"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="dev.tutushkin.githubfinder.ui.about.AboutFragment"

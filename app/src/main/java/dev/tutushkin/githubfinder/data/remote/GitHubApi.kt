@@ -12,6 +12,6 @@ interface GitHubApi {
 
     @GET("/users/{username}")
     suspend fun getUser(
-        @Path("username") user: String
+        @Path("username") name: String
     ): UserResponse
 }
