@@ -18,7 +18,8 @@ import dev.tutushkin.githubfinder.ui.search.viewmodel.SearchViewModel
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
-    private var fragmentSearchBinding: FragmentSearchBinding? = null
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var adapter: SearchAdapter
 
@@ -27,8 +28,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         val viewModel by viewModels<SearchViewModel>()
 
-        val binding = FragmentSearchBinding.bind(view)
-        fragmentSearchBinding = binding
+        _binding = FragmentSearchBinding.bind(view)
 
         binding.searchIcon.setOnClickListener {
             it.hideKeyboard()
@@ -62,19 +62,19 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun showPlaceholder(text: String) {
         adapter.submitList(emptyList())
-        fragmentSearchBinding!!.reposPlaceholder.text = text
-        fragmentSearchBinding!!.reposPlaceholder.visibility = View.VISIBLE
-        fragmentSearchBinding!!.reposList.visibility = View.INVISIBLE
+        binding.reposPlaceholder.text = text
+        binding.reposPlaceholder.visibility = View.VISIBLE
+        binding.reposList.visibility = View.INVISIBLE
     }
 
     private fun showReposList(list: List<SearchReposDto>) {
         adapter.submitList(list)
-        fragmentSearchBinding!!.reposList.visibility = View.VISIBLE
-        fragmentSearchBinding!!.reposPlaceholder.visibility = View.INVISIBLE
+        binding.reposList.visibility = View.VISIBLE
+        binding.reposPlaceholder.visibility = View.INVISIBLE
     }
 
     override fun onDestroyView() {
-        fragmentSearchBinding = null
+        _binding = null
         super.onDestroyView()
     }
 
