@@ -17,11 +17,17 @@ class UserViewModel @Inject constructor(
     private val _user = MutableLiveData<UserState>()
     val user: LiveData<UserState> = _user
 
-    fun getUser(name: String) {
+    suspend fun handleUser(name: String) {
         viewModelScope.launch {
             _user.postValue(UserState.Loading)
+
             val result = repository.getUser(name)
-            _user.postValue(UserState.SuccessResult(result))
+
+            if (result.isSuccess) {
+                _user.postValue(UserState.SuccessResult(result.getOrThrow()))
+            } else {
+                _user.postValue(UserState.ErrorResult(Exception("Error loading from the server")))
+            }
         }
     }
 }

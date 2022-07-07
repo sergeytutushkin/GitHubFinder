@@ -31,7 +31,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
         viewModel.user.observe(viewLifecycleOwner, ::render)
 
-        viewModel.getUser(args.user)
+        viewModel.handleUser(args.user)
     }
 
     private fun render(state: UserState) {
