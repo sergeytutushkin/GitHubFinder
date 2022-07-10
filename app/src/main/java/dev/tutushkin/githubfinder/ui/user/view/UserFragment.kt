@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import dev.tutushkin.githubfinder.R
@@ -27,11 +26,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
         _binding = FragmentUserBinding.bind(view)
 
-        val args: UserFragmentArgs by navArgs()
-
         viewModel.user.observe(viewLifecycleOwner, ::render)
-
-        viewModel.handleUser(args.user)
     }
 
     private fun render(state: UserState) {
