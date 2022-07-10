@@ -14,23 +14,23 @@ class SearchViewModel @Inject constructor(
     private val repository: GitHubRepository
 ) : ViewModel() {
 
-    private val _repos = MutableLiveData<ReposState>()
-    val repos: LiveData<ReposState> = _repos
+    private val _repos = MutableLiveData<SearchState>()
+    val repos: LiveData<SearchState> = _repos
 
     init {
-        _repos.postValue(ReposState.EmptyQuery)
+        _repos.postValue(SearchState.EmptyQuery)
     }
 
     fun onNewQuery(query: String) {
         if (query.isEmpty()) {
-            _repos.postValue(ReposState.EmptyQuery)
+            _repos.postValue(SearchState.EmptyQuery)
             return
         }
 
         viewModelScope.launch {
-            _repos.postValue(ReposState.Loading)
+            _repos.postValue(SearchState.Loading)
             val result = repository.searchRepositories(query).items
-            _repos.postValue(ReposState.SuccessResult(result))
+            _repos.postValue(SearchState.SuccessResult(result))
         }
     }
 }

@@ -12,9 +12,9 @@
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:hint="@string/hint_search_input"
+        android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,16 +29,23 @@
         app:layout_constraintEnd_toEndOf="@id/searchInput"
         app:layout_constraintTop_toTopOf="@id/searchInput" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reposList"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingHorizontal="12dp"
-        android:paddingTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchInput" />
+        app:layout_constraintTop_toBottomOf="@id/searchInput">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reposList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="12dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/reposPlaceholder"

@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.tutushkin.githubfinder.R
 import dev.tutushkin.githubfinder.data.remote.SearchReposDto
 import dev.tutushkin.githubfinder.databinding.FragmentSearchBinding
-import dev.tutushkin.githubfinder.ui.search.viewmodel.ReposState
+import dev.tutushkin.githubfinder.ui.search.viewmodel.SearchState
 import dev.tutushkin.githubfinder.ui.search.viewmodel.SearchViewModel
 
 @AndroidEntryPoint
@@ -37,26 +37,30 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         binding.reposList.layoutManager = LinearLayoutManager(requireContext())
         val listener = object : RepoClickListener {
-            // TODO Handle through the ViewModel
             override fun onItemClick(user: String) {
                 val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(user)
                 view.findNavController().navigate(action)
             }
         }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.onNewQuery(binding.searchInput.text.toString())
+            binding.swipeRefresh.isRefreshing = false
+        }
+
         adapter = SearchAdapter(listener)
         binding.reposList.adapter = adapter
 
         viewModel.repos.observe(viewLifecycleOwner, ::handleReposList)
     }
 
-    // TODO Handling errors
-    private fun handleReposList(state: ReposState) {
+    private fun handleReposList(state: SearchState) {
         when (state) {
-            is ReposState.Loading -> showPlaceholder("Loading...")
-            is ReposState.EmptyResult -> showPlaceholder("Not found")
-            is ReposState.EmptyQuery -> showPlaceholder("Enter a query")
-            is ReposState.SuccessResult -> showReposList(state.result)
-            is ReposState.ErrorResult -> showPlaceholder("Something went wrong")
+            is SearchState.Loading -> showPlaceholder("Loading...")
+            is SearchState.EmptyResult -> showPlaceholder("Not found")
+            is SearchState.EmptyQuery -> showPlaceholder("Enter a query")
+            is SearchState.SuccessResult -> showReposList(state.result)
+            is SearchState.ErrorResult -> showPlaceholder("Something went wrong")
         }
     }
 
